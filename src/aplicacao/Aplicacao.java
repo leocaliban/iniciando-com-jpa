@@ -9,14 +9,20 @@ public class Aplicacao {
 
 	public static void main(String[] args) {
 	
-		Pessoa pessoa1 = new Pessoa(1L, "Jack Bauer", "jb24@gmail.com");
-		Pessoa pessoa2 = new Pessoa(2L, "Nina Meyers", "nina@gmail.com");
-		Pessoa pessoa3 = new Pessoa(3L, "Ram�n Salazar", "donramon@gmail.com");
-		Pessoa pessoa4 = new Pessoa(4L, "David Palmer", "david_palmer@gmail.com");
+		Pessoa pessoa1 = new Pessoa(null, "Jack Bauer", "jb24@gmail.com");
+		Pessoa pessoa2 = new Pessoa(null, "Nina Meyers", "nina@gmail.com");
+		Pessoa pessoa3 = new Pessoa(null, "Ram�n Salazar", "donramon@gmail.com");
+		Pessoa pessoa4 = new Pessoa(null, "David Palmer", "david_palmer@gmail.com");
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
 		
+		em.getTransaction().begin();
+		em.persist(pessoa1);
+		em.persist(pessoa2);
+		em.persist(pessoa3);
+		em.persist(pessoa4);
+		em.getTransaction().commit();
 		
 		System.out.println(pessoa1);
 		System.out.println(pessoa2);
