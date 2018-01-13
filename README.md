@@ -151,13 +151,37 @@ private Long id;
 private String nome;
 ```
 
+### 07. Criar conexão com a base de dados.
+Na aplicação do projeto temos que criar o EntityManager que faz a conexão e o acesso aos dados, e criar o EntityManagerFactory que é utilizado para criar o EntityManager.
 
+* Na classe Aplicação, crie o EntityManagerFactory após as instâncias de Pessoa.
+```java
+//O parâmetro faz referência ao name da persistence-unit que criamos lá no persistence.xml
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+```
 
+* Em seguida crie o EntityManager dessa forma
+```java
+EntityManager em = emf.createEntityManager();
+```
+### 08. Persistir os objetos no banco de dados.
+Para salvar os dados no banco é preciso alterar o parâmetro id para null lá na criação dos objetos, pois definimos como IDENTITY a geração dos ids.
 
+```java
+Pessoa pessoa1 = new Pessoa(null, "Jack Bauer", "jb24@gmail.com");
+```
+* Salvando os objetos
+```java
+//Abre a transação com o banco de dados
+em.getTransaction().begin();
+//Persiste os objetos
+em.persist(pessoa1);
+em.persist(pessoa2);
+em.persist(pessoa3);
+em.persist(pessoa4);
+//Fecha a transação
+em.getTransaction().commit();
+```
+Teste sua aplicação e verifique o seu banco de dados agora
 
-
-
-
-
-
-
+![pp](https://user-images.githubusercontent.com/23413093/34908498-a4d44362-f877-11e7-9e5e-ed2f4c443302.png)
