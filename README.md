@@ -1,4 +1,4 @@
-# Iniciando com JPA
+# Iniciando com JPA básico
 Criando uma aplicação simples para persistir com JPA.
 
 ## Passos
@@ -179,9 +179,30 @@ em.persist(pessoa1);
 em.persist(pessoa2);
 em.persist(pessoa3);
 em.persist(pessoa4);
-//Fecha a transação
+//Envia os dados
 em.getTransaction().commit();
+//Fecha a transação
+em.close();
+emf.close();
 ```
 Teste sua aplicação e verifique o seu banco de dados agora
 
 ![pp](https://user-images.githubusercontent.com/23413093/34908498-a4d44362-f877-11e7-9e5e-ed2f4c443302.png)
+
+### 09. Buscar e remover objetos no banco de dados.
+
+Vamos recuperar um objeto no banco através do Id, o JPA disponibiliza um método em seu EntityManager chamado 'find' nele passaremos o tipo do objeto que queremos recuperar e seu id.
+
+```java
+Pessoa pessoa = em.find(Pessoa.class, 2L);
+```
+Para remover o objeto é preciso abrir a transação assim da mesma forma que foi feito na hora de salvar, só será excluido o objeto se ele estiver sendo monitorado pelo JPA, isto é, devemos recuperar o objeto do banco antes de dar o comando de exclusão, e comitar em seguida, tudo isso em uma mesma transação.
+
+```java
+//Recupera o objeto
+Pessoa pessoa = em.find(Pessoa.class, 3L);
+//Abre a transação para remover		
+em.getTransaction().begin();
+em.remove(pessoa);
+em.getTransaction().commit();
+```
