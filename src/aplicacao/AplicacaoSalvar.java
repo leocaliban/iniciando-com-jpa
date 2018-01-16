@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 
 import dominio.Pessoa;
 
-public class Aplicacao {
+public class AplicacaoSalvar {
 
 	public static void main(String[] args) {
 	
@@ -28,6 +28,8 @@ public class Aplicacao {
 		System.out.println(pessoa2);
 		System.out.println(pessoa3);
 		System.out.println(pessoa4);
+		em.close();
+		emf.close();
 		
 	}
 }
