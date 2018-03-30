@@ -74,7 +74,7 @@ create database iniciando_jpa;
 ### 04. Adicionar as bibliotecas Hibernate e MySQL Connector ao projeto.
 Faça o download a seguir.
 
-* [Download das bibliotecas](https://tinyurl.com/ybjfv4f8)
+* [Download das bibliotecas]()
 
 Em seu projeto, crie uma pasta chamada lib e descompacte o arquivo baixado nessa pasta (lib)
 ![pp](https://user-images.githubusercontent.com/23413093/34903396-ddb326ea-f817-11e7-8a16-f4caf8c9cd37.png)
